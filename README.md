@@ -70,14 +70,14 @@ The Reference Viewer for `WBP_MessagingLayout`: the game mode and HUD that show 
 ## How it was built
 
 ```
-Figma Desktop ──figma-bridge──> AI agent (Qwen3.8-27B) ──unreal-bridge (127.0.0.1:8000)──> Unreal Editor
+Figma Desktop ──figma-bridge──> AI agent (Qwen3.8-27B) ──unreal-bridge──> Unreal Editor
 ```
 
 **Model.** The agent ran locally on [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B).
 
 **Figma → agent.** [figma-bridge](https://github.com/MaxsBond/figma-bridge) is a local MCP server plus a Figma dev plugin. The agent reads the open file through it: node trees, layout, colors, text, exported icons. It also works on a View seat and has no rate limits.
 
-**Agent → Unreal.** unreal-bridge is a custom-built MCP server for the Unreal Editor, used here instead of the official Unreal MCP. It is not published. It runs inside the editor at `http://127.0.0.1:8000/mcp`. The agent uses it to add widgets, set properties, create Blueprint functions and events, and edit config.
+**Agent → Unreal.** unreal-bridge is a custom-built MCP server for the Unreal Editor, used here instead of the official Unreal MCP. It is not published. It runs inside the editor. The agent uses it to add widgets, set properties, create Blueprint functions and events, and edit config.
 
 Animations were authored with a custom editor toolset, `UMGAnimToolset`, that creates Sequencer tracks and keys in Widget Blueprints. It is not part of this repo.
 
