@@ -4,7 +4,6 @@ Intermediate/
 Saved/
 DerivedDataCache/
 Packaged/
-Build/Mac/FileOpenOrder/
 Plugins/*/Intermediate/
 PluginSource/*/Intermediate/
 PluginSource/*/Binaries/
@@ -18,3 +17,4 @@ __pycache__/
 # Local editor plugins
 Plugins/
 PluginSource/
+Build/
