@@ -51,6 +51,10 @@ The Event Graph of the same widget: each button, row and chip forwards its event
 
 ![Blueprint: EventGraph close-up](docs/ue-graph-detail.png)
 
+`Anim_ListCollapse` (Figma Motion 01) scrubbed in the UMG animation timeline: the chat list collapses while the chat takes the full width.
+
+![UMG animation: Anim_ListCollapse](docs/ue-anim-list-collapse.gif)
+
 The component widgets in `Content/UI/Messaging/Widgets`, one per Figma component:
 
 ![Content Browser: widgets](docs/ue-content-widgets.webp)
