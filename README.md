@@ -1,13 +1,30 @@
 # Messanger App
 
-![Messanger App: final motion](docs/figma-motion-07-final.gif)
-
 A messenger UI built in Unreal Engine 5.8 with UMG only. No C++ game code, no 3D scene: every screen, component, animation and data asset was created by a local AI agent running [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) that read the design from Figma and wrote it into the Unreal Editor through MCP.
 
 This is a test project. It shows what a local agent can do when it has a bridge to both tools.
 
+<img src="docs/figma-motion-07-final.gif" alt="Messanger App: final motion" width="480">
+
 Figma design: [Messanger App](https://www.figma.com/design/ixZDtpBk5UwKQ8aWuPHvpm/Messanger-App?node-id=15-8784)
 
+## How it was built
+
+![How it was built](docs/architecture.svg)
+
+Everything runs locally on one machine. The agent (an MCP client) sits in the middle, runs the local model and talks to both bridges over MCP (stdio).
+
+**Model.** The agent ran locally on [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B).
+
+**Figma → agent.** [figma-bridge](https://github.com/MaxsBond/figma-bridge) is a local MCP server plus a Figma dev plugin. The bridge talks to the plugin over WebSocket on `127.0.0.1:3055`, and the plugin uses the Figma Plugin API, including the private API, to read the open file: node trees, layout, colors, text, exported icons. It also works on a View seat and has no rate limits.
+
+**Agent → Unreal.** unreal-bridge is a custom-built MCP server for the Unreal Editor, used here instead of the official Unreal MCP. It is not published. It runs as a separate local process, like figma-bridge, and sends HTTP requests to the editor's Remote Control API on `127.0.0.1:30010`. Commands run through the editor's Python API: UMG widgets, data assets, string tables and config. The agent uses it to add widgets, set properties, create Blueprint functions and events, and edit config.
+
+The Python API does not cover Sequencer tracks and keys in Widget Blueprints, so animations were authored with a custom editor toolset, `UMGAnimToolset`. It is not part of this repo.
+
+The `.uproject` in this repo enables Epic's built-in `ModelContextProtocol` plugin and its toolsets instead of unreal-bridge, because unreal-bridge is not published.
+
+**How the agent worked.** Instead of clicking through the editor, the agent wrote throwaway Python scripts that described the UI and sent it to unreal-bridge: component widgets, the layout with its three states, animations, chat logic and the demo data assets. The scripts were removed once the assets were done; the result lives in `Content/`.
 
 ## What's in the demo
 
@@ -66,24 +83,6 @@ Icons imported as textures (`T_Icon_*`):
 The Reference Viewer for `WBP_MessagingLayout`: the game mode and HUD that show it, and everything it uses (data assets, icons, component widgets).
 
 ![Reference Viewer: WBP_MessagingLayout](docs/ue-reference-viewer.webp)
-
-## How it was built
-
-![How it was built](docs/architecture.svg)
-
-Everything runs locally on one machine. The agent (an MCP client) sits in the middle, runs the local model and talks to both bridges over MCP (stdio).
-
-**Model.** The agent ran locally on [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B).
-
-**Figma → agent.** [figma-bridge](https://github.com/MaxsBond/figma-bridge) is a local MCP server plus a Figma dev plugin. The bridge talks to the plugin over WebSocket on `127.0.0.1:3055`, and the plugin uses the Figma Plugin API, including the private API, to read the open file: node trees, layout, colors, text, exported icons. It also works on a View seat and has no rate limits.
-
-**Agent → Unreal.** unreal-bridge is a custom-built MCP server for the Unreal Editor, used here instead of the official Unreal MCP. It is not published. It runs as a separate local process, like figma-bridge, and sends HTTP requests to the editor's Remote Control API on `127.0.0.1:30010`. Commands run through the editor's Python API: UMG widgets, data assets, string tables and config. The agent uses it to add widgets, set properties, create Blueprint functions and events, and edit config.
-
-The Python API does not cover Sequencer tracks and keys in Widget Blueprints, so animations were authored with a custom editor toolset, `UMGAnimToolset`. It is not part of this repo.
-
-The `.uproject` in this repo enables Epic's built-in `ModelContextProtocol` plugin and its toolsets instead of unreal-bridge, because unreal-bridge is not published.
-
-**How the agent worked.** Instead of clicking through the editor, the agent wrote throwaway Python scripts that described the UI and sent it to unreal-bridge: component widgets, the layout with its three states, animations, chat logic and the demo data assets. The scripts were removed once the assets were done; the result lives in `Content/`.
 
 ## Hardware
 
