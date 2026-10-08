@@ -1,6 +1,6 @@
 # Messanger App
 
-A messenger UI built in Unreal Engine 5.8 with UMG only. No C++ game code, no 3D scene: every screen, component, animation and data asset was created by a local AI agent that read the design from Figma and wrote it into the Unreal Editor through MCP.
+A messenger UI built in Unreal Engine 5.8 with UMG only. No C++ game code, no 3D scene: every screen, component, animation and data asset was created by a local AI agent running [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) that read the design from Figma and wrote it into the Unreal Editor through MCP.
 
 This is a test project. It shows what a local agent can do when it has a bridge to both tools.
 
@@ -74,18 +74,18 @@ The Reference Viewer for `WBP_MessagingLayout`: the game mode and HUD that show 
 ## How it was built
 
 ```
-Figma Desktop ──figma-bridge──> AI agent ──Unreal MCP (127.0.0.1:8000)──> Unreal Editor
+Figma Desktop ──figma-bridge──> AI agent (Qwen3.8-27B) ──unreal-bridge (127.0.0.1:8000)──> Unreal Editor
 ```
+
+**Model.** The agent ran locally on [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B).
 
 **Figma → agent.** [figma-bridge](https://github.com/MaxsBond/figma-bridge) is a local MCP server plus a Figma dev plugin. The agent reads the open file through it: node trees, layout, colors, text, exported icons. It also works on a View seat and has no rate limits.
 
-**Agent → Unreal.** The Unreal Editor runs an MCP server (`.mcp.json`, `http://127.0.0.1:8000/mcp`) through the `ModelContextProtocol` plugin and editor toolsets (`UMGToolSet`, `EditorToolset`, `SlateInspectorToolset`, `ConfigSettingsToolset`). The agent uses them to add widgets, set properties, create Blueprint functions and events, and edit config.
-
-<!-- TODO: link to unreal-bridge if it is published -->
+**Agent → Unreal.** unreal-bridge is a custom-built MCP server for the Unreal Editor, used here instead of the official Unreal MCP. It is not published. It runs inside the editor at `http://127.0.0.1:8000/mcp` (see `.mcp.json`). The agent uses it to add widgets, set properties, create Blueprint functions and events, and edit config.
 
 Animations were authored with a custom editor toolset, `UMGAnimToolset`, that creates Sequencer tracks and keys in Widget Blueprints. It is not part of this repo.
 
-**How the agent worked.** Instead of clicking through the editor, the agent wrote throwaway Python scripts that described the UI and sent it to the Unreal MCP server: component widgets, the layout with its three states, animations, chat logic and the demo data assets. The scripts were removed once the assets were done; the result lives in `Content/`.
+**How the agent worked.** Instead of clicking through the editor, the agent wrote throwaway Python scripts that described the UI and sent it to unreal-bridge: component widgets, the layout with its three states, animations, chat logic and the demo data assets. The scripts were removed once the assets were done; the result lives in `Content/`.
 
 ## Run it
 
