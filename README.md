@@ -33,6 +33,10 @@ The Figma file is the spec. Each page has notes next to the frames, and the agen
 
 ![Figma motion: collapse chat list](docs/figma-motion-01-collapse-list.png)
 
+The same section played in the Figma Motion (beta) timeline:
+
+![Figma Motion: collapse chat list playback](docs/figma-anim-list-collapse.gif)
+
 ![Figma motion: attachment menu](docs/figma-motion-02-attach-menu.png)
 
 ![Figma motion: voice message](docs/figma-motion-05-voice-message.png)
