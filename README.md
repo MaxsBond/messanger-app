@@ -51,6 +51,18 @@ The Event Graph of the same widget: each button, row and chip forwards its event
 
 ![Blueprint: EventGraph close-up](docs/ue-graph-detail.png)
 
+The component widgets in `Content/UI/Messaging/Widgets`, one per Figma component:
+
+![Content Browser: widgets](docs/ue-content-widgets.webp)
+
+Icons imported as textures (`T_Icon_*`, sources in `SourceArt/Messaging`):
+
+![Content Browser: icons](docs/ue-content-icons.webp)
+
+The Reference Viewer for `WBP_MessagingLayout`: the game mode and HUD that show it, and everything it uses (data assets, icons, component widgets).
+
+![Reference Viewer: WBP_MessagingLayout](docs/ue-reference-viewer.webp)
+
 ## How it was built
 
 ```
