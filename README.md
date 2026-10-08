@@ -6,7 +6,6 @@ This is a test project. It shows what a local agent can do when it has a bridge 
 
 Figma design: [Messanger App](https://www.figma.com/design/ixZDtpBk5UwKQ8aWuPHvpm/Messanger-App?node-id=15-8784)
 
-<!-- TODO: screenshot or GIF of the running app next to the Figma frame -->
 
 ## What's in the demo
 
@@ -17,6 +16,40 @@ Figma design: [Messanger App](https://www.figma.com/design/ixZDtpBk5UwKQ8aWuPHvp
 - Working chat: rows open their conversation, suggestion chips and Enter send messages, and session messages survive switching conversations.
 - A Demo button in the list header that plays incoming messages on a timer.
 - Conversations are data assets (`Content/UI/Messaging/Data`), not hardcoded text.
+
+## How it was planned
+
+The Figma file is the spec. Each page has notes next to the frames, and the agent followed them when it built the Unreal side.
+
+**Components.** Each Figma component maps 1:1 to a UMG User Widget with the same name. The notes say which props to expose and which widgets already exist in UE.
+
+![Figma: UMG components](docs/figma-components.png)
+
+**Layouts.** Three base states of the screen: chat list open, chat list collapsed, details open. In Unreal they are one widget (`WBP_MessagingLayout`) with a `State` property.
+
+![Figma: base states](docs/figma-layouts.png)
+
+**Motion.** Every animation has its own section with a trigger, a timeline and build notes.
+
+![Figma motion: collapse chat list](docs/figma-motion-01-collapse-list.png)
+
+![Figma motion: attachment menu](docs/figma-motion-02-attach-menu.png)
+
+![Figma motion: voice message](docs/figma-motion-05-voice-message.png)
+
+![Figma motion: details panel](docs/figma-motion-06-details-panel.png)
+
+## Result in Unreal
+
+`WBP_MessagingLayout` in the UMG designer. The whole tree is built from the `WBP_*` components, at the Figma frame size (905×744).
+
+![UMG designer: WBP_MessagingLayout](docs/ue-designer.png)
+
+The Event Graph of the same widget: each button, row and chip forwards its event to a layout function (`ToggleList`, `OpenDetails`, `SelectConversation`, ...).
+
+![Blueprint: EventGraph overview](docs/ue-graph.png)
+
+![Blueprint: EventGraph close-up](docs/ue-graph-detail.png)
 
 ## How it was built
 
