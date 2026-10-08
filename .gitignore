@@ -14,3 +14,7 @@ PluginSource/*/Binaries/
 
 # Python
 __pycache__/
+
+# Local editor plugins
+Plugins/
+PluginSource/

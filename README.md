@@ -83,7 +83,7 @@ Figma Desktop ──figma-bridge──> AI agent ──Unreal MCP (127.0.0.1:800
 
 <!-- TODO: link to unreal-bridge if it is published -->
 
-Animations use a custom toolset, `UMGAnimToolset` (`PluginSource/UMGAnimToolset`): an editor plugin that creates Sequencer tracks and keys in Widget Blueprints. The built plugin is in `Plugins/UMGAnimToolset`.
+Animations were authored with a custom editor toolset, `UMGAnimToolset`, that creates Sequencer tracks and keys in Widget Blueprints. It is not part of this repo.
 
 **How the agent worked.** Instead of clicking through the editor, the agent wrote throwaway Python scripts that described the UI and sent it to the Unreal MCP server: component widgets, the layout with its three states, animations, chat logic and the demo data assets. The scripts were removed once the assets were done; the result lives in `Content/`.
 
@@ -92,4 +92,4 @@ Animations use a custom toolset, `UMGAnimToolset` (`PluginSource/UMGAnimToolset`
 1. Open `MessangerApp.uproject` in Unreal Engine 5.8 (Mac).
 2. Play in editor. The main widget is `Content/UI/Messaging/WBP_MessagingLayout`.
 
-`UMGAnimToolset` is prebuilt for Mac only. It is an editor-only plugin, needed only to author UMG animations through MCP.
+The `.uproject` still lists the editor-only `UMGAnimToolset` plugin. If Unreal reports it missing, let it disable the plugin: the project does not need it to run.
