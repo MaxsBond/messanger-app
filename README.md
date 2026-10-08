@@ -55,7 +55,7 @@ The component widgets in `Content/UI/Messaging/Widgets`, one per Figma component
 
 ![Content Browser: widgets](docs/ue-content-widgets.webp)
 
-Icons imported as textures (`T_Icon_*`, sources in `SourceArt/Messaging`):
+Icons imported as textures (`T_Icon_*`):
 
 ![Content Browser: icons](docs/ue-content-icons.webp)
 
@@ -77,25 +77,11 @@ Figma Desktop ──figma-bridge──> AI agent ──Unreal MCP (127.0.0.1:800
 
 Animations use a custom toolset, `UMGAnimToolset` (`PluginSource/UMGAnimToolset`): an editor plugin that creates Sequencer tracks and keys in Widget Blueprints. The built plugin is in `Plugins/UMGAnimToolset`.
 
-**The generator scripts.** Instead of clicking through the editor, the agent wrote Python scripts that describe the UI and send it to the Unreal MCP server. They live in `SourceArt/Messaging` and can be rerun to rebuild the assets:
-
-| Script | What it builds |
-|---|---|
-| `ue_mcp.py`, `ue_call.py` | Minimal client for the Unreal MCP server |
-| `gen_components.py` | Component widgets (`WBP_VoiceMessage`, `WBP_TypingIndicator`, `WBP_RecordingBar`, `WBP_AttachMenu`, `WBP_DetailsPanel`) |
-| `gen_layout.py` | `WBP_MessagingLayout` with all three layout states in one tree |
-| `gen_layout_state.py` | State properties and `ApplyState()` |
-| `gen_components_motion.py` | Component animations and event dispatchers |
-| `gen_layout_motion.py` | Layout animations, chat logic, Demo button |
-| `gen_data_figma.py` | Conversation data assets taken from the Figma file |
-| `gen_window.py` | Window size of the packaged app (the Figma frame size) |
-| `package_mac.sh`, `sign_mac.sh` | Build, sign and notarize the Mac app |
+**How the agent worked.** Instead of clicking through the editor, the agent wrote throwaway Python scripts that described the UI and sent it to the Unreal MCP server: component widgets, the layout with its three states, animations, chat logic and the demo data assets. The scripts were removed once the assets were done; the result lives in `Content/`.
 
 ## Run it
 
 1. Open `MessangerApp.uproject` in Unreal Engine 5.8 (Mac).
 2. Play in editor. The main widget is `Content/UI/Messaging/WBP_MessagingLayout`.
 
-To build a standalone Mac app run `SourceArt/Messaging/package_mac.sh`. The script expects the engine at `/Volumes/Unreal/UE_5.8`, so change the path if yours is elsewhere.
-
-`UMGAnimToolset` is prebuilt for Mac only. It is an editor-only plugin, so you need it only to rerun the generator scripts.
+`UMGAnimToolset` is prebuilt for Mac only. It is an editor-only plugin, needed only to author UMG animations through MCP.
