@@ -6,7 +6,7 @@ This is a test project. It shows what a local agent can do when it has a bridge 
 
 <img src="docs/figma-motion-07-final.gif" alt="Messanger App: final motion" width="480">
 
-Figma design: [Messanger App](https://www.figma.com/design/ixZDtpBk5UwKQ8aWuPHvpm/Messanger-App?node-id=15-8784)
+Figma design: [Messanger App](https://www.figma.com/community/file/1690047389706855415)
 
 ## How it was built
 
