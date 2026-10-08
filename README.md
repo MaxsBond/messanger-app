@@ -102,3 +102,5 @@ The `.uproject` still lists the editor-only `UMGAnimToolset` plugin. If Unreal r
 ## License
 
 [MIT](LICENSE)
+
+Icons in `Content/UI/Messaging/Icons` are from [Google Material Symbols](https://github.com/google/material-design-icons), licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).
