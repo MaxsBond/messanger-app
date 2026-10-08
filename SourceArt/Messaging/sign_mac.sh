@@ -1,6 +1,6 @@
 #!/bin/bash
-# Signs MyProject/Packaged/Messanger.app with Developer ID (hardened runtime, sandbox entitlement only), notarizes it
-# and staples the ticket. Output: MyProject/Packaged/Messanger.zip, ready to share. Run after package_mac.sh.
+# Signs messanger-app/Packaged/Messanger.app with Developer ID (hardened runtime, sandbox entitlement only), notarizes it
+# and staples the ticket. Output: messanger-app/Packaged/Messanger.zip, ready to share. Run after package_mac.sh.
 # Needs the "Developer ID Application: Maksym Bondar (P8F3YS69A4)" cert and the notarytool keychain profile ff-notary.
 # usage: ./sign_mac.sh
 set -e

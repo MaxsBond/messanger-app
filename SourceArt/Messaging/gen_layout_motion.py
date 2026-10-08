@@ -1,5 +1,5 @@
 # Figma "Unreal Engine Target" → Motion page, applied to /Game/UI/Messaging/WBP_MessagingLayout (built by gen_layout.py).
-# Needs the UMGAnimToolset plugin (MyProject/PluginSource/UMGAnimToolset) and the component animations/functions
+# Needs the UMGAnimToolset plugin (messanger-app/PluginSource/UMGAnimToolset) and the component animations/functions
 # made by gen_components_motion.py. Run after gen_layout.py; safe to rerun.
 #   01 Collapse chat list   -> Anim_ListCollapse (ListToggleButton)
 #   02 Attachment menu      -> Anim_AttachOpen / Anim_AttachClose + AttachMenu.PlayItemsIn (AddButton, OnItemPicked)

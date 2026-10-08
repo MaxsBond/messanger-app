@@ -5,7 +5,7 @@
 	"FriendlyName": "UMG Animation ToolSet",
 	"Description": "MCP tools for creating UMG widget animations (Sequencer tracks and keys) in Widget Blueprints.",
 	"Category": "UI",
-	"CreatedBy": "MyProject",
+	"CreatedBy": "MaxsBond",
 	"EnabledByDefault": false,
 	"CanContainContent": false,
 	"Installed": false,
