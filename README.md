@@ -85,6 +85,14 @@ The `.uproject` in this repo enables Epic's built-in `ModelContextProtocol` plug
 
 **How the agent worked.** Instead of clicking through the editor, the agent wrote throwaway Python scripts that described the UI and sent it to unreal-bridge: component widgets, the layout with its three states, animations, chat logic and the demo data assets. The scripts were removed once the assets were done; the result lives in `Content/`.
 
+## Hardware
+
+![How much RAM it needs](docs/ram.svg)
+
+On a Mac, the model, Unreal Editor and Figma share the same unified memory. 48 GB runs the 4-bit model with 32k context and both apps open. 32 GB is tight. On 24 GB only a smaller model like Qwen3.5-9B fits.
+
+Unreal Editor and Figma numbers are measured on this project. Model numbers are estimates.
+
 ## Run it
 
 1. Open `MessangerApp.uproject` in Unreal Engine 5.8 (Mac).
