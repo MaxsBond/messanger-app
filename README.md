@@ -98,3 +98,7 @@ Unreal Editor and Figma numbers are measured on this project. Model numbers are 
 2. Play in editor. The main widget is `Content/UI/Messaging/WBP_MessagingLayout`.
 
 The `.uproject` still lists the editor-only `UMGAnimToolset` plugin. If Unreal reports it missing, let it disable the plugin: the project does not need it to run.
+
+## License
+
+[MIT](LICENSE)
