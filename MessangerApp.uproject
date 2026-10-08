@@ -1,0 +1,58 @@
+{
+ "FileVersion": 3,
+ "EngineAssociation": "5.8",
+ "Category": "",
+ "Description": "UI-only project: all visuals rendered with UMG",
+ "Plugins": [
+  {
+   "Name": "ModelContextProtocol",
+   "Enabled": true,
+   "TargetAllowList": [
+	"Editor"
+   ]
+  },
+  {
+   "Name": "UMGToolSet",
+   "Enabled": true,
+   "TargetAllowList": [
+	"Editor"
+   ]
+  },
+  {
+   "Name": "EditorToolset",
+   "Enabled": true,
+   "TargetAllowList": [
+	"Editor"
+   ]
+  },
+  {
+   "Name": "SlateInspectorToolset",
+   "Enabled": true,
+   "TargetAllowList": [
+	"Editor"
+   ]
+  },
+  {
+   "Name": "ConfigSettingsToolset",
+   "Enabled": true,
+   "TargetAllowList": [
+	"Editor"
+   ]
+  },
+  {
+   "Name": "UMGAnimToolset",
+   "Enabled": true,
+   "TargetAllowList": [
+	"Editor"
+   ]
+  },
+  {
+   "Name": "NNEDenoiser",
+   "Enabled": false
+  },
+  {
+   "Name": "NNERuntimeORT",
+   "Enabled": false
+  }
+ ]
+}

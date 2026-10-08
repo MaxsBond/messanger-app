@@ -1,0 +1,13 @@
+# Unreal generated
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Packaged/
+Build/Mac/FileOpenOrder/
+Plugins/*/Intermediate/
+PluginSource/*/Intermediate/
+PluginSource/*/Binaries/
+
+# macOS
+.DS_Store
