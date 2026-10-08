@@ -37,12 +37,6 @@ The same section played in the Figma Motion (beta) timeline:
 
 ![Figma Motion: collapse chat list playback](docs/figma-anim-list-collapse.gif)
 
-![Figma motion: attachment menu](docs/figma-motion-02-attach-menu.png)
-
-![Figma motion: voice message](docs/figma-motion-05-voice-message.png)
-
-![Figma motion: details panel](docs/figma-motion-06-details-panel.png)
-
 ## Result in Unreal
 
 `WBP_MessagingLayout` in the UMG designer. The whole tree is built from the `WBP_*` components, at the Figma frame size (905×744).
