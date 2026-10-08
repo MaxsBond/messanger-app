@@ -69,7 +69,7 @@ The Reference Viewer for `WBP_MessagingLayout`: the game mode and HUD that show 
 
 ## How it was built
 
-![How it was built](docs/architecture.png)
+![How it was built](docs/architecture.svg)
 
 Everything runs locally on one machine. The agent (an MCP client) sits in the middle, runs the local model and talks to both bridges over MCP (stdio).
 
