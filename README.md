@@ -1,5 +1,7 @@
 # Messanger App
 
+![Messanger App: final motion](docs/figma-motion-07-final.gif)
+
 A messenger UI built in Unreal Engine 5.8 with UMG only. No C++ game code, no 3D scene: every screen, component, animation and data asset was created by a local AI agent running [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) that read the design from Figma and wrote it into the Unreal Editor through MCP.
 
 This is a test project. It shows what a local agent can do when it has a bridge to both tools.
@@ -36,10 +38,6 @@ The Figma file is the spec. Each page has notes next to the frames, and the agen
 The same section played in the Figma Motion (beta) timeline:
 
 ![Figma Motion: collapse chat list playback](docs/figma-anim-list-collapse.gif)
-
-**07 Final motion.** All the motions played together in one prototype: a new message moves its chat to the top, the attachment menu opens, a voice message is recorded and sent, and the typing indicator appears.
-
-![Figma motion: final motion](docs/figma-motion-07-final.gif)
 
 ## Result in Unreal
 
