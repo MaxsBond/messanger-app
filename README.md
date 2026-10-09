@@ -201,6 +201,8 @@ What keeps this from being a one-off demo.
 
 ## Hardware
 
+This project was built on a Mac mini (M6, 32 GB RAM).
+
 ![How much RAM it needs](docs/ram.svg)
 
 On a Mac, the model, Unreal Editor and Figma share the same unified memory.
@@ -208,7 +210,7 @@ On a Mac, the model, Unreal Editor and Figma share the same unified memory.
 | RAM | Verdict |
 |---|---|
 | 48 GB | Runs Qwen3.8-27B 4-bit with 32k context and both apps open |
-| 32 GB | Tight |
+| 32 GB | Tight, but works. This project was built on 32 GB |
 | 24 GB | Only a smaller model, like Qwen3.5-9B |
 
 Unreal Editor and Figma numbers are measured on this project. Model numbers are estimates.
