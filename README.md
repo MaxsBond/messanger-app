@@ -39,7 +39,7 @@ A proof of concept: one local model, two custom MCP servers, no cloud. The agent
 | 1. Design | Figma, with build notes next to every frame | Components, 3 layout states, motion specs |
 | 2. Read | [figma-bridge](https://github.com/MaxsBond/figma-bridge) (MCP) | Node trees, layout, colors, text, icons |
 | 3. Build | unreal-bridge (custom MCP) | Widgets, layout, Blueprint logic, data assets, config |
-| 4. Animate | `UMGAnimToolset` (custom editor toolset) | UMG animations from the Figma motion specs |
+| 4. Animate | unreal-bridge | UMG animations from the Figma motion specs |
 | 5. Ship | Unreal packaging | Mac app (Apple Silicon) |
 
 The agent ran on [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B), locally, on the same Mac as Figma and the Unreal Editor.
@@ -52,8 +52,7 @@ The agent ran on [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B), locally
 |---|---|---|---|
 | Agent | MCP client. Runs the local model and calls both bridges | MCP (stdio) | — |
 | figma-bridge | MCP server + Figma dev plugin. Reads the open file through the Plugin API, including the private API. Works on a View seat, no rate limits | WebSocket `127.0.0.1:3055` | [Yes](https://github.com/MaxsBond/figma-bridge) |
-| unreal-bridge | MCP server for the Unreal Editor, used instead of the official Unreal MCP. Runs editor Python: UMG widgets, data assets, string tables, config | HTTP to Remote Control API `127.0.0.1:30010` | No |
-| `UMGAnimToolset` | Editor toolset for Sequencer tracks and keys in Widget Blueprints. The Python API does not cover them | Called by the agent | No |
+| unreal-bridge | MCP server for the Unreal Editor, used instead of the official Unreal MCP. Runs editor Python: UMG widgets, animations, data assets, string tables, config | HTTP to Remote Control API `127.0.0.1:30010` | No |
 
 **How the agent worked.** It did not click through the editor. It wrote throwaway Python scripts that described the UI and sent them to unreal-bridge: component widgets, the layout and its states, animations, chat logic, demo data. The scripts were deleted once the assets were done. The result lives in `Content/`.
 
@@ -225,7 +224,7 @@ If Unreal reports `UMGAnimToolset` missing, let it disable the plugin. The proje
 
 ## Limitations
 
-- unreal-bridge and `UMGAnimToolset` are not published. The `.uproject` enables Epic's built-in `ModelContextProtocol` plugin and its toolsets instead, so you can try a similar setup.
+- unreal-bridge is not published. The `.uproject` enables Epic's built-in `ModelContextProtocol` plugin and its toolsets instead, so you can try a similar setup.
 - The agent's build scripts were throwaway and are not in the repo.
 - Tested on Mac only.
 
