@@ -2,7 +2,7 @@
 
 **From a Figma file to a running Mac app, built by a local AI agent.**
 
-A proof of concept: one local model, two custom MCP servers, no cloud. The agent read the design in Figma, built the UI in Unreal Engine 5.8, and the result runs as a packaged Mac app. Every widget, animation and data asset in `Content/` was created by the agent.
+A proof of concept: one local model, two custom MCP servers, no cloud. The agent designed the UI in Figma, rebuilt it in Unreal Engine 5.8, and the result runs as a packaged Mac app. The Figma components and every widget, animation and data asset in `Content/` were created by the agent.
 
 ![Unreal Engine 5.8](https://img.shields.io/badge/Unreal_Engine-5.8-0E1128?logo=unrealengine)
 ![UMG only](https://img.shields.io/badge/UI-UMG_only-3B5BDB)
@@ -36,8 +36,8 @@ A proof of concept: one local model, two custom MCP servers, no cloud. The agent
 
 | Step | Tool | Output |
 |---|---|---|
-| 1. Design | Figma, with build notes next to every frame | Components, 3 layout states, motion specs |
-| 2. Read | [figma-bridge](https://github.com/MaxsBond/figma-bridge) (MCP) | Node trees, layout, colors, text, icons |
+| 1. Design | [figma-bridge](https://github.com/MaxsBond/figma-bridge) (MCP) | Figma components, 3 layout states, motion specs, build notes |
+| 2. Read | figma-bridge | Node trees, layout, colors, text, icons |
 | 3. Build | unreal-bridge (custom MCP) | Widgets, layout, Blueprint logic, data assets, config |
 | 4. Animate | unreal-bridge | UMG animations from the Figma motion specs |
 | 5. Ship | Unreal packaging | Mac app (Apple Silicon) |
@@ -51,14 +51,14 @@ The agent ran on [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B), locally
 | Part | What it does | Talks over | Public |
 |---|---|---|---|
 | Agent | MCP client. Runs the local model and calls both bridges | MCP (stdio) | — |
-| figma-bridge | MCP server + Figma dev plugin. Reads the open file through the Plugin API, including the private API. Works on a View seat, no rate limits | WebSocket `127.0.0.1:3055` | [Yes](https://github.com/MaxsBond/figma-bridge) |
+| figma-bridge | MCP server + Figma dev plugin. Reads and edits the open file through the Plugin API, including the private API. Works on a View seat, no rate limits | WebSocket `127.0.0.1:3055` | [Yes](https://github.com/MaxsBond/figma-bridge) |
 | unreal-bridge | MCP server for the Unreal Editor, used instead of the official Unreal MCP. Runs editor Python: UMG widgets, animations, data assets, string tables, config | HTTP to Remote Control API `127.0.0.1:30010` | No |
 
 **How the agent worked.** It did not click through the editor. It wrote throwaway Python scripts that described the UI and sent them to unreal-bridge: component widgets, the layout and its states, animations, chat logic, demo data. The scripts were deleted once the assets were done. The result lives in `Content/`.
 
 ## Figma is the spec
 
-Every Figma page has notes next to the frames. The agent followed them when it built the Unreal side.
+The agent designed this Figma file first. Every page has notes next to the frames, and the agent followed them when it built the Unreal side.
 
 **Components.** Each Figma component maps 1:1 to a UMG User Widget with the same name. Text properties become exposed variables, variants become a state enum or a WidgetSwitcher, auto layout becomes Horizontal/Vertical Box.
 
